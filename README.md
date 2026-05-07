@@ -1,1 +1,1 @@
-https://github.com/nikitation/posmotri-v-okno-fd/
+https://github.com/nikitation/posmotri-v-okno-fd
