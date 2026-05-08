@@ -13,7 +13,7 @@ html {
   block-size: 100%;
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-size: 18px;
   background-color: #1b1919;
   display: flex;
@@ -75,6 +75,7 @@ ol {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
+  transform: translate(0, 3.5px); /* возможно это не правильный подход, но совпадает с макетом */
 }
 
 .content__list-container {
@@ -122,7 +123,7 @@ ol {
 
 .content__video-card-thumbnail {
   height: 103px;
-  min-width: 196px;
+  min-width: 194px;
   object-fit: cover;
   object-position: center center;
   padding: 2px 2px 0 0;
@@ -136,7 +137,7 @@ ol {
 }
 
 .search-form__fieldset-title {
-  font-family: "Fira Sans Condensed";
+  font-family: "Fira Sans Condensed", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   font-style: normal;
@@ -144,7 +145,7 @@ ol {
 }
 
 .title {
-  font-family: Oswald;
+  font-family: Oswald, Arial, sans-serif;
   font-weight: 700;
   font-size: 75px;
   text-transform: uppercase;
@@ -173,6 +174,7 @@ ol {
 
 .content__card-link:active {
   background-color: #545050;
+  text-decoration: none;
 }
 
 .content__card-link:active .content__video-card-description-container {
@@ -181,11 +183,12 @@ ol {
 
 .content__card-link:focus-visible, .content__card-link:focus {
   outline: 1px solid #FFF;
+  outline-offset: -2px;
 }
 
 .content__video-card-title {
   text-transform: uppercase;
-  font-family: Oswald;
+  font-family: Oswald, Arial, sans-serif;
   font-weight: 700;
   font-size: 30px;
 
@@ -195,7 +198,7 @@ ol {
 }
 
 .content__video-card-description {
-  font-family: "Fira Sans Condensed";
+  font-family: "Fira Sans Condensed", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 16.2px;
@@ -218,11 +221,10 @@ ol {
   align-items: center;
   width: fit-content;
   gap: 5px;
-  margin-bottom: -3.2px;
 }
 
 .search-form__textfield {
-  font-family: "Fira Sans Condensed";
+  font-family: "Fira Sans Condensed", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
   border-style: solid none;
@@ -231,14 +233,11 @@ ol {
   background-color: transparent;
   appearance: none;
   color: #FFF;
-  width: 225px;
+  min-width: 225px;
 }
 
 .search-form__textfield::placeholder {
   color: rgb(255 255 255 / 0.7);
-  /*letter-spacing: -0.5px;
-  word-spacing: -6px;*/
-  font-size: 18px;
 }
 
 input:focus {
@@ -277,11 +276,16 @@ label:has(:focus-visible) {
   text-decoration: underline;
 }
 
+.search-form__label:has(.search-form__checkbox:checked):hover .search-form__label-text {
+  /* если я правильно понял про первый пункт "Можно лучше" */
+  text-decoration: none;
+}
+
 .button {
   border: 1px solid #FFF;
   background-color: transparent;
   color: #FFF;
-  font-family: "Fira Sans Condensed";
+  font-family: "Fira Sans Condensed", Arial, sans-serif;
   font-size: 18px;
   font-weight: 700;
 }
@@ -290,15 +294,18 @@ label:has(:focus-visible) {
   height: 34px;
   width: 194px;
   padding-top: 2px;
-  margin-bottom: -4px;
 }
 
 .more-button {
+  /* так, у меня нет склеивания, указанного в замечании. до этого проверял результат в браузере на основе
+   * chrome, так вот в нем мне приходилось использовать отрицательный word-spacing чтобы расстояние между
+   * словами совпадало с макетом. вроде все удалил. полагаю можно использовать, говоря на языке scss:
+   * word-spacing: $button-font-size; чтобы точно соответствовало пробелу, но кажется в рамках спринта
+   * это может восприняться как лишнее. в общем как говорится в популярной шутке "у меня все работает" */
   padding: 4.5px 0;
   width: 390px;
   margin-right: 3px;
   align-self: flex-end;
-  word-spacing: -6px;
 }
 
 .button:hover {
@@ -307,5 +314,14 @@ label:has(:focus-visible) {
 }
 
 .button:active {
+  background-color: #545050;
+}
+
+.button:active:hover {
+  /* "Можно лучше" */
+  text-decoration: none;
+}
+
+.content__card-link_current {
   background-color: #545050;
 }
