@@ -75,7 +75,14 @@ ol {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  transform: translate(0, 3.5px); /* возможно это не правильный подход, но совпадает с макетом */
+  /*transform: translate(0, 3.5px); 
+   * Так, вы говорите, что для решения данной задачи надо скорректировать внешний отступ между
+   *   .result__video-container и .search-form, но это только двигает видео контейнер вверх
+   * По какой-то причине у меня .search-form находится ниже границы .content
+   * Если посмотреть на макет, то там в блоке .content__details gap должен быть 26px, но на практике
+   *   заголовок сдвигается сильно от центра и надо его обратно придвигать и при этом карточки сильно
+   *   сдвигаются вниз, делаю вариант с 23px...
+   */
 }
 
 .content__list-container {
@@ -92,7 +99,7 @@ ol {
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: 23px;
 }
 
 .result__video-container {
@@ -130,9 +137,7 @@ ol {
 }
 
 .content__video-card-description-container {
-  /*flex: 1; ===>*/
   width: 198px;
-  /* <=== */
   padding-left: 2.5px;
 }
 
@@ -145,6 +150,7 @@ ol {
 }
 
 .title {
+  padding-top: 3px;
   font-family: Oswald, Arial, sans-serif;
   font-weight: 700;
   font-size: 75px;
@@ -195,13 +201,14 @@ ol {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  line-height: 34px;
 }
 
 .content__video-card-description {
   font-family: "Fira Sans Condensed", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 16.2px;
 }
 
 .search-form__checkbox-list {
@@ -277,7 +284,6 @@ label:has(:focus-visible) {
 }
 
 .search-form__label:has(.search-form__checkbox:checked):hover .search-form__label-text {
-  /* если я правильно понял про первый пункт "Можно лучше" */
   text-decoration: none;
 }
 
@@ -297,15 +303,11 @@ label:has(:focus-visible) {
 }
 
 .more-button {
-  /* так, у меня нет склеивания, указанного в замечании. до этого проверял результат в браузере на основе
-   * chrome, так вот в нем мне приходилось использовать отрицательный word-spacing чтобы расстояние между
-   * словами совпадало с макетом. вроде все удалил. полагаю можно использовать, говоря на языке scss:
-   * word-spacing: $button-font-size; чтобы точно соответствовало пробелу, но кажется в рамках спринта
-   * это может восприняться как лишнее. в общем как говорится в популярной шутке "у меня все работает" */
   padding: 4.5px 0;
   width: 390px;
   margin-right: 3px;
   align-self: flex-end;
+  margin-bottom: 2.5px;
 }
 
 .button:hover {
@@ -318,7 +320,6 @@ label:has(:focus-visible) {
 }
 
 .button:active:hover {
-  /* "Можно лучше" */
   text-decoration: none;
 }
 
